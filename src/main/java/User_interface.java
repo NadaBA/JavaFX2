@@ -20,6 +20,7 @@ public class User_interface extends Application {
         stage.show();
         System.out.println("Hey");
         System.out.println("hej");
+        System.out.println("nada er sej");
 
     }
 }
