@@ -24,4 +24,10 @@ public class User_interface extends Application {
         System.out.println("hejsa");
 
     }
+
+    public static void main(String[] args) {
+        Application.launch(args);
+
+
+    }
 }
