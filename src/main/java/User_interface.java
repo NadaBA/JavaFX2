@@ -5,8 +5,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-
-
 public class User_interface extends Application {
 
     @Override
