@@ -18,6 +18,7 @@ public class User_interface extends Application {
         Scene scene = new Scene(stackPane, 640, 480);
         stage.setScene(scene);
         stage.show();
+        System.out.println("hej");
 
     }
 }
