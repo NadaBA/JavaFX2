@@ -19,6 +19,7 @@ public class User_interface extends Application {
         stage.setScene(scene);
         stage.show();
         System.out.println("Hey");
+        System.out.println("hej");
 
     }
 }
