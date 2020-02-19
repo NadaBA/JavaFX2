@@ -21,6 +21,7 @@ public class User_interface extends Application {
         System.out.println("Hey");
         System.out.println("hej");
         System.out.println("nada er sej");
+        System.out.println("hejsa");
 
     }
 }
