@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.imageio.stream.FileImageInputStream;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileInputStream;
 
@@ -26,16 +27,17 @@ public class User_interface extends Application {
        //titel for stage
         primaryStage.setTitle("lav en knap");
 
-        //input strøm
-
-
-
-
-       // C:\Users\Payam\Desktop
         //billede
-        FileInputStream input = new FileInputStream("C:\\Users\\Payam\\Desktop\\Ged.jpg");
 
-        Image i = new Image(input);
+        //Ved MAC brug nedenstående syntaks:
+        //FileInputStream input = new FileInputStream("/Users/Nada/Desktop/Sejged2.jpg"); //MAC
+
+        //Image i = new Image(input,300,300,false,true); //MAC
+
+        //Ved WINDOWS brug nedenstående syntaks:
+        //FileInputStream input = new FileInputStream("C:\\Users\\Payam\\Desktop\\Ged.jpg"); //WINDOWS
+
+        //Image i = new Image(input); //WINDOWS
 
         //billede view
         ImageView iw = new ImageView(i);
