@@ -30,7 +30,7 @@ public class User_interface extends Application {
         //billede
 
         //Ved MAC brug nedenstående syntaks:
-        //FileInputStream input = new FileInputStream("/Users/Nada/Desktop/Sejged2.jpg"); //MAC
+        //FileInputStream input = new FileInputStream("/Users/Nada/Desktop/Sejged2.jpg"); //MAC OS
 
         //Image i = new Image(input,300,300,false,true); //MAC
 
