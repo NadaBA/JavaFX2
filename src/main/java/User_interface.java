@@ -32,21 +32,19 @@ public class User_interface extends Application {
         //Ved MAC brug nedenstående syntaks:
         //FileInputStream input = new FileInputStream("/Users/Nada/Desktop/Sejged2.jpg"); //MAC OS
 
-        //Image i = new Image(input,300,300,false,true); //MAC
+        FileInputStream input = new FileInputStream("C:\\Users\\Payam\\Desktop\\EKG1.jpg");
 
-        //Ved WINDOWS brug nedenstående syntaks:
-        //FileInputStream input = new FileInputStream("C:\\Users\\Payam\\Desktop\\Ged.jpg"); //WINDOWS
-
-        //Image i = new Image(input); //WINDOWS
+        Image i = new Image(input);
 
         //billede view
         ImageView iw = new ImageView(i);
 
-        Button b = new Button("The Goat",iw);
+        Button b = new Button("On",iw);
+        Button b1 = new Button("Off");
 
         TilePane tilePane = new TilePane();
 
-        Label l = new Label("Not GOAT");
+        Label l = new Label("Patient Monitoring System Offline");
         tilePane.getChildren().add(0,b);
         tilePane.getChildren().add(1,l);
         //aktions event
@@ -60,7 +58,9 @@ public class User_interface extends Application {
                 FileChooser.getExtensions().addAll();
 
                  */
-                l.setText("THE GOAAAT!");
+
+                l.setText("Patient Monitoring System Online!");
+                //l.setText("Patient Monitoring System Offline!");
             }
         };
         //når knappen er trykket
