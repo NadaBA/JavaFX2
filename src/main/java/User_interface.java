@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import java.io.FileInputStream;
@@ -15,118 +14,126 @@ import java.io.FileInputStream;
 
 public class User_interface extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-        //titel for stage
-        primaryStage.setTitle("Sluk / Tænd");
-
-        //billede
-
-        //Ved MAC brug nedenstående syntaks:
-        //FileInputStream input = new FileInputStream("/Users/Nada/Desktop/Sejged2.jpg"); //MAC OS
-
-        FileInputStream input = new FileInputStream("C:\\Users\\Payam\\Desktop\\ON.png");
-
-        Image i = new Image(input);
-
-        //billede view
-        ImageView iw = new ImageView(i);
-        ImageView ie = new ImageView(i);
-
-        Button b = new Button("On", iw);
-        Button b1 = new Button("Off",ie);
-
-        b.setStyle("-fx-background-color: green");
-        b1.setStyle("-fx-background-color: red");
 
 
-        TilePane tilePane = new TilePane();
-        //FlowPane flowPane = new FlowPane();
+        @Override
+        public void start (Stage primaryStage) throws Exception {
 
 
-        Label l = new Label("Patient Monitoring System Offline");
-        Label l2 = new Label("Klik på 'On' eller 'Off, for at tænde eller slukke");
-      //  Label l3 = new Label("For at tænde eller slukke");
-        TextField textField = new TextField("Skriv noger her:");
-       // textField.setPrefColumnCount(5);
-        //Label l1 = new Label("Patient Monitoring System Online");
-        tilePane.getChildren().add(0, b);
-        tilePane.getChildren().add(1, b1);
-        tilePane.getChildren().add(2,l);
-        tilePane.getChildren().add(3,l2);
-      //  tilePane.getChildren().add(4,l3);
-        tilePane.getChildren().add(4,textField);
-        tilePane.setStyle("-fx-background-color: lightblue");
+            //titel for stage
+            primaryStage.setTitle("Sluk / Tænd");
+
+            //billede
+
+            //Ved MAC brug nedenstående syntaks:
+            //FileInputStream input = new FileInputStream("/Users/Nada/Desktop/Sejged2.jpg"); //MAC OS
+
+            FileInputStream input = new FileInputStream("C:\\Users\\Payam\\Desktop\\ON.png");
+
+            Image image = new Image(input);
 
 
-        //tilePane.getChildren().add(3,l1);
-        //aktions event
-        Scene scene = new Scene(tilePane);
-        //Scene scene1 = new Scene(flowPane);
+            //billede view
+            ImageView iw = new ImageView(image);
+            ImageView ie = new ImageView(image);
+
+            Button bOn = new Button("On", iw);
+            Button bOff = new Button("Off", ie);
+            Button bUpdateTemp = new Button("Update Temp");
+
+            bOn.setStyle("-fx-background-color: green");
+            bOff.setStyle("-fx-background-color: red");
+
+
+            TilePane tilePane = new TilePane();
+
+
+            Label systemOfflineLabel = new Label("Patient Monitoring System Offline");
+            Label labelKlik = new Label("Klik på 'On' eller 'Off, for at tænde eller slukke");
+            Label labelIntet = new Label("IT Projekt 1, 2. Semester");
+            Label tempLabel = new Label("Patientens Temperatur: " + getValue());
+            TextField textField = new TextField("Skriv en kommentar:");
+            tilePane.getChildren().add(0, bOn);
+            tilePane.getChildren().add(1, bOff);
+            tilePane.getChildren().add(2, systemOfflineLabel);
+            tilePane.getChildren().add(3, labelKlik);
+            tilePane.getChildren().add(4,labelIntet);
+            tilePane.getChildren().add(5, textField);
+            tilePane.getChildren().add(6, tempLabel);
+            tilePane.getChildren().add(7, bUpdateTemp);
+            tilePane.setStyle("-fx-background-color: lightblue");
 
 
 
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
 
-                l.setText("Patient Monitoring System Online!");
-                //l.setText("Patient Monitoring System Offline!");
+
+
+
+            //aktions event
+            Scene scene = new Scene(tilePane);
+
+
+            EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+
+                    systemOfflineLabel.setText("Patient Monitoring System Online!");
+
+                }
+            };
+            //når knappen er trykket
+            bOn.setOnAction(event);
+
+            EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    systemOfflineLabel.setText("Patient Monitoring System.........Offline....");
+                }
+            };
+            bOff.setOnAction(event1);
+
+
+                EventHandler<ActionEvent> eventTemp = new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        tempLabel.setText("Patientens Temperatur: " + getValue());
+                        if (getValue() >= 39){
+                            Label warningLabel = new Label("Patientens temperatur er over 39!!");
+                            System.out.println("gør noget!");
+                            tilePane.getChildren().add(8,warningLabel);
+                            warningLabel.setStyle("-fx-text-fill: red");
+                        }
+                    }
+                };
+                bUpdateTemp.setOnAction(eventTemp);
+
+                primaryStage.setScene(scene);
+                //primaryStage.setScene(scene1);
+                primaryStage.show();
             }
-        };
-        //når knappen er trykket
-        b.setOnAction(event);
 
-        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                l.setText("Patient Monitoring System.........Offline....");
+
+
+        double getValue () {
+
+            while(true) {
+                double value = Math.random() * 60 + 150;
+                // tilfældigt tal, der ganges med 60 + 150 for at få en given værdi
+
+                double temp = value * 4 / 50 + 24;
+                // Given værdi fra ovenstående kode (math.random konverteres til grader celsius)
+                temp = Math.round(temp * 100d / 100d);
+
+                return temp;
             }
-        };
-        b1.setOnAction(event1);
-
-
-
-
-
-
-        primaryStage.setScene(scene);
-        //primaryStage.setScene(scene1);
-        primaryStage.show();
-
-
-
-
     }
 
 
 
 
-
-
-    /*
-    public void start(Stage stage) throws Exception{
-        String version = System.getProperty("javafx.version");
-        Label nannasLabel = new Label("Hej fra Nanna");
-
-        Label label = new Label("Hello form JavaFX");
-        Pane stackPane = new FlowPane(label);
-        stackPane.getChildren().add(nannasLabel);
-        Scene scene = new Scene(stackPane, 640, 480);
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Hey");
-        System.out.println("hej");
-        System.out.println("mada er sej");
-        System.out.println("hejsa");
-        System.out.println("Hej Nanna");
-    } */
 
     public static void main(String[] args) {
         Application.launch(args);
 
-
     }
-
 
 }
